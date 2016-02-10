@@ -1,3 +1,4 @@
+package ru.itis.inform
 
 public interface IGraphs {
 
