@@ -14,7 +14,7 @@ public class FareyGeneratorArrayImpl {
         RationalNumbers[1] = new Rational(1, 1);
         int k = 2;
 
-        for (int i = 2; i < n; i++){
+        for (int i = 2; i <= n; i++){
             int j = 0;
 
             while (j <= k-2){
