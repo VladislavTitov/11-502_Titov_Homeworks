@@ -1,3 +1,4 @@
+package ru.itis.inform
 
 class Graph implements IGraphs{
 
