@@ -1,16 +1,16 @@
-package ru.itis.inform
+package ru.itis.inform;
 
-class Graph implements IGraphs{
+class GraphMatrixImpl implements Graphs {
 
-    private final int MAX_POINT = 100;
+    private final int MAX_POINT = 15;
     private int[][] graf;
     private int points;
     private int maxSize;
 
-    Graph(){
+    GraphMatrixImpl(){
         initGraph(MAX_POINT);
     }
-    Graph(int maxSize){
+    GraphMatrixImpl(int maxSize){
         initGraph(maxSize);
     }
 
@@ -29,6 +29,7 @@ class Graph implements IGraphs{
     public void addEdge(int i, int j, int weight){
         if(i < points && j < points) {
             graf[i][j] = weight;
+            graf[j][i] = weight;
         }else throw new IllegalArgumentException();
     }
 
@@ -41,5 +42,26 @@ class Graph implements IGraphs{
         }
     }
 
+    private int[][] dMatrix = new int[maxSize][maxSize];
+
+    @Override
+    public void runFloyd(int n) {
+        for(int i = 0; i < n; i++){
+            for (int j = 0; j < n; i++){
+                for (int k = 0; k < n; k++){
+                    dMatrix[i][j] = graf[i][j] < (graf[i][k] + graf[k][j]) ? graf[i][j] : graf[i][k] + graf[k][j];
+                }
+            }
+        }
+    }
+
+    public void showGraph1() {
+        for (int i = 0; i < points; i++) {
+            for (int j = 0; j < points - 1; j++) {
+                System.out.print(dMatrix[i][j] + ",  ");
+            }
+            System.out.println(dMatrix[i][points - 1]);
+        }
+    }
 
 }

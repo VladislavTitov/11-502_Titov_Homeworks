@@ -1,21 +1,27 @@
-package ru.itis.inform
+package ru.itis.inform;
 
 public class Main{
     public static void main(String[]args){
-        IGraphs g = new Graph();
+        Graphs g = new GraphMatrixImpl();
 
+        int n = 0;
         g.addPoint();
+        n++;
         g.addPoint();
+        n++;
         g.addPoint();
-        g.addPoint();
-        g.addPoint();
+        n++;
 
-        g.addEdge(0, 2, 3);
-        g.addEdge(0, 3, 2);
-        g.addEdge(3, 4, 5);
-        g.addEdge(2, 1, 1);
-        g.addEdge(2, 4, 2);
+        g.addEdge(0, 1, 3);
+        g.addEdge(1, 2, 2);
+        g.addEdge(0, 2, 300);
+
+
+
+
+        g.runFloyd(n);
 
         g.showGraph();
+        g.showGraph1();
     }
 }
