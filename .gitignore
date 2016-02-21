@@ -16,4 +16,4 @@ effective-settings.xml
 *.lck
 *.jar
 /*/out/
-.metadata
+/*/.metadata/
