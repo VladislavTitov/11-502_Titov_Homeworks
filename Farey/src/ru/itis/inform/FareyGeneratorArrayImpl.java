@@ -6,9 +6,8 @@ public class FareyGeneratorArrayImpl {
         this.generate(n);
     }
 
-    public void generate(int n){
+    private void generate(int n){
 
-        Rational t;
         Rational[] RationalNumbers = new Rational[200];
         RationalNumbers[0] = new Rational(0, 1);
         RationalNumbers[1] = new Rational(1, 1);
@@ -34,15 +33,10 @@ public class FareyGeneratorArrayImpl {
                 }
                 j++;
             }
-
         }
 
         for (int i = 0; i < 100; i++){
             System.out.print(RationalNumbers[i].getA() + "/" + RationalNumbers[i].getB() + ", ");
         }
-
-
-
     }
-
 }

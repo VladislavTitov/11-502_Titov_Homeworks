@@ -1,6 +1,6 @@
 package ru.itis.inform;
 
-class GraphMatrixImpl implements Graphs {
+class GraphMatrixImpl implements Graph, DirectedGraph {
 
     private final int MAX_POINT = 15;
     private int[][] graf;
@@ -33,13 +33,10 @@ class GraphMatrixImpl implements Graphs {
         }else throw new IllegalArgumentException();
     }
 
-    public void showGraph() {
-        for (int i = 0; i < points; i++) {
-            for (int j = 0; j < points - 1; j++) {
-                System.out.print(graf[i][j] + ",  ");
-            }
-            System.out.println(graf[i][points - 1]);
-        }
+    public void addDirectedEdge(int i, int j, int weight){
+        if(i < points && j < points) {
+            graf[i][j] = weight;
+        }else throw new IllegalArgumentException();
     }
 
     private int[][] dMatrix = new int[maxSize][maxSize];
@@ -55,7 +52,16 @@ class GraphMatrixImpl implements Graphs {
         }
     }
 
-    public void showGraph1() {
+    public void showGraph() {
+        for (int i = 0; i < points; i++) {
+            for (int j = 0; j < points - 1; j++) {
+                System.out.print(graf[i][j] + ",  ");
+            }
+            System.out.println(graf[i][points - 1]);
+        }
+    }
+
+    public void showdMatrix() {
         for (int i = 0; i < points; i++) {
             for (int j = 0; j < points - 1; j++) {
                 System.out.print(dMatrix[i][j] + ",  ");

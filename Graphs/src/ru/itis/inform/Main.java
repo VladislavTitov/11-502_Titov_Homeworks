@@ -2,7 +2,7 @@ package ru.itis.inform;
 
 public class Main{
     public static void main(String[]args){
-        Graphs g = new GraphMatrixImpl();
+        Graph g = new GraphMatrixImpl();
 
         int n = 0;
         g.addPoint();

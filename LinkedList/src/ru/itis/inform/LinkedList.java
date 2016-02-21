@@ -19,23 +19,24 @@ public class LinkedList implements List {
             newNode.setNext(this.first);
             first = newNode;
         }
-        count += 1;
+
+        count++;
     }
 
     @Override
     public void remove(int element) {
         Node node = this.first;
+
         for(int i = 0; i < count - 2; i++) {
+
             if(i == 0 && node.getValue() == element) {
                 first = node.getNext();
                 return;
             }
 
             if(node.getNext().getValue() == element) {
-                if(i == 0) {
-                    first = node;
-                    return;
-                } else if (i == count - 1) {
+
+                 if (i == count - 1) {
                     node.setNext(null);
                     return;
                 } else {
@@ -47,5 +48,14 @@ public class LinkedList implements List {
             node = node.getNext();
         }
         count--;
+    }
+
+    public  void showList(){
+        Node node1 = this.first;
+        for (int i = 0; i < count - 1; i++){
+            System.out.println(node1.getValue());
+            node1 = node1.getNext();
+        }
+        System.out.println(node1);
     }
 }
