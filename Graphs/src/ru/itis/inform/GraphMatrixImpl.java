@@ -1,16 +1,17 @@
 package ru.itis.inform;
 
-class GraphMatrixImpl implements Graph, DirectedGraph {
+public class GraphMatrixImpl implements Graph, DirectedGraph {
 
     private final int MAX_POINT = 15;
     private int[][] graf;
     private int points;
     private int maxSize;
+    private int[][] dMatrix;
 
-    GraphMatrixImpl(){
+    public GraphMatrixImpl(){
         initGraph(MAX_POINT);
     }
-    GraphMatrixImpl(int maxSize){
+    public GraphMatrixImpl(int maxSize){
         initGraph(maxSize);
     }
 
@@ -18,6 +19,7 @@ class GraphMatrixImpl implements Graph, DirectedGraph {
         this.maxSize = maxSize;
         this.points = 0;
         this.graf = new int[maxSize][maxSize];
+        this.dMatrix = new int[maxSize][maxSize];
     }
 
     public void addPoint(){
@@ -26,27 +28,32 @@ class GraphMatrixImpl implements Graph, DirectedGraph {
         }else throw new IllegalArgumentException();
     }
 
+    public void addDirectedEdge(int i, int j, int weight){
+        if(i < points && j < points) {
+            graf[i][j] = weight;
+            dMatrix[i][j] = weight;
+        }else throw new IllegalArgumentException();
+    }
+
     public void addEdge(int i, int j, int weight){
         if(i < points && j < points) {
             graf[i][j] = weight;
             graf[j][i] = weight;
+            dMatrix[i][j] = weight;
+            dMatrix[j][i] = weight;
         }else throw new IllegalArgumentException();
     }
-
-    public void addDirectedEdge(int i, int j, int weight){
-        if(i < points && j < points) {
-            graf[i][j] = weight;
-        }else throw new IllegalArgumentException();
-    }
-
-    private int[][] dMatrix = new int[maxSize][maxSize];
 
     @Override
     public void runFloyd(int n) {
         for(int i = 0; i < n; i++){
-            for (int j = 0; j < n; i++){
+            for (int j = 0; j < n; j++){
                 for (int k = 0; k < n; k++){
-                    dMatrix[i][j] = graf[i][j] < (graf[i][k] + graf[k][j]) ? graf[i][j] : graf[i][k] + graf[k][j];
+                    if (dMatrix[i][j] < (dMatrix[i][k] + dMatrix[k][j])){
+                        dMatrix[i][j] = dMatrix[i][j];
+                    }else{
+                        dMatrix[i][j] = dMatrix[i][k] + dMatrix[k][j];
+                    }
                 }
             }
         }

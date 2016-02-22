@@ -2,7 +2,7 @@ package ru.itis.inform;
 
 public class Main{
     public static void main(String[]args){
-        Graph g = new GraphMatrixImpl();
+        GraphMatrixImpl g = new GraphMatrixImpl();
 
         int n = 0;
         g.addPoint();
@@ -12,9 +12,10 @@ public class Main{
         g.addPoint();
         n++;
 
-        g.addEdge(0, 1, 3);
-        g.addEdge(1, 2, 2);
-        g.addEdge(0, 2, 300);
+        g.addDirectedEdge(0, 1, 3);
+        g.addDirectedEdge(1, 2, 2);
+        g.addDirectedEdge(0, 2, 300);
+
 
 
 
@@ -22,6 +23,6 @@ public class Main{
         g.runFloyd(n);
 
         g.showGraph();
-        g.showGraph1();
+        g.showdMatrix();
     }
 }
