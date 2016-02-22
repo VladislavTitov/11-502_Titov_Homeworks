@@ -11,12 +11,12 @@ public class GraphMatrixImplTest {
     @org.junit.Before
     public void setUp() throws Exception{
         this.graph = new GraphMatrixImpl();
-        this.graph.addPoint();
+        this.graph.points = 2;
     }
 
     @org.junit.Test(expected = IllegalArgumentException.class)
     public void testAddEdge() throws Exception{
-        graph.addEdge(0, 1 , 5);
+        graph.addEdge(4, 3 , 5);
     }
 
 }

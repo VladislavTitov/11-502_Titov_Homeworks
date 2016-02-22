@@ -4,7 +4,7 @@ public class GraphMatrixImpl implements Graph, DirectedGraph {
 
     private final int MAX_POINT = 15;
     private int[][] graf;
-    private int points;
+    public int points;   // public нужен, чтобы в тесте установить любое значение, так это поле должно быть private!
     private int maxSize;
     private int[][] dMatrix;
 
