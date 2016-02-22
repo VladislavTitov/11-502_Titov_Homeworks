@@ -15,7 +15,7 @@ public class LinkedList<T> implements List<T> {
 
     class LinkedListIteratorImpl<T> implements Iterator<T> {
 
-        Node<T> current;
+        public Node<T> current; // public для теста
 
         public LinkedListIteratorImpl(Node<T> first) {
             this.current = first;
