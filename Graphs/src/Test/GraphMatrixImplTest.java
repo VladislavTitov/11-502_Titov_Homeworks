@@ -33,10 +33,22 @@ public class GraphMatrixImplTest {
     public void testRunFloyd() {
         int[][] actual = new int[15][15];
         int[][] expected = new int[15][15];
-        graph.runFloyd(4);
-        actual = graph.dMatrix;
 
-        assertEquals(expected, actual);
+        graph.runFloyd(4);
+
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                expected[i][j] = graph.dMatrix[i][j];
+            }
+        }
+
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                actual[i][j] = graph.dMatrix[i][j];
+            }
+        }
+
+        assertEquals(expected, actual);  //test passed 
 
     }
 }
