@@ -16,12 +16,27 @@ public class GraphMatrixImplTest {
         graph.addPoint();
         graph.addPoint();
         graph.addPoint();
+        graph.addPoint();
 
+        graph.addDirectedEdge(0, 1, 3);
+        graph.addDirectedEdge(1, 2, 2);
+        graph.addDirectedEdge(0, 2, 300);
     }
 
     @org.junit.Test(expected = IllegalArgumentException.class)
     public void testAddEdge() throws Exception{
-        graph.addEdge(1, 2 , 5);                               //тест рухнет
+        graph.addEdge(1, 3 , 5);                               //тест рухнет
     }
 
+    @Test
+
+    public void testRunFloyd() {
+        int[][] actual = new int[15][15];
+        int[][] expected = new int[15][15];
+        graph.runFloyd(4);
+        actual = graph.dMatrix;
+
+        assertEquals(expected, actual);
+
+    }
 }

@@ -4,9 +4,9 @@ public class GraphMatrixImpl implements Graph, DirectedGraph {
 
     private final int MAX_POINT = 15;
     private int[][] graf;
-    private int points;  
+    private int points;
     private int maxSize;
-    private int[][] dMatrix;
+    public int[][] dMatrix;  //for test
 
     public GraphMatrixImpl(){
         initGraph(MAX_POINT);
