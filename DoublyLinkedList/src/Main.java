@@ -9,7 +9,6 @@ public class Main {
 
         dll.iterator.next();
         dll.iterator.next();
-        dll.iterator.next();
 
         dll.insert(6);
 
