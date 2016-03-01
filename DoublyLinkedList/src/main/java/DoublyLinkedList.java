@@ -103,7 +103,7 @@ public class DoublyLinkedList<T> implements List<T>{
 
         @Override
         public T getPrevious() {
-            return (T) current.value;
+            return (T) current.previous.value;
         }
     }
 
