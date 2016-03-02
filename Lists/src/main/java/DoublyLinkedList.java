@@ -4,7 +4,7 @@ public class DoublyLinkedList<T> implements List<T>{
     Node<T> last;
     int count = 0;
     Node<T> current;
-    DoublyLinkedListIteratorImpl<T> iterator = new DoublyLinkedListIteratorImpl<>();
+    Iterator<T> iterator = new DoublyLinkedListIteratorImpl();
 
     @Override
     public void addFirst(T element) {
@@ -58,19 +58,19 @@ public class DoublyLinkedList<T> implements List<T>{
         }
     }
 
-    class Node<T>{
-        T value;
-        Node<T> next;
-        Node<T> previous;
+    class Node<E> {
+        E value;
+        Node<E> next;
+        Node<E> previous;
 
-        public Node(T value, Node<T> next, Node<T> previous) {
+        public Node(E value, Node<E> next, Node<E> previous) {
             this.value = value;
             this.next = next;
             this.previous = previous;
         }
     }
 
-    class DoublyLinkedListIteratorImpl<T> implements Iterator<T> {
+    class DoublyLinkedListIteratorImpl implements Iterator<T> {
 
         @Override
         public boolean hasNext() {
@@ -98,12 +98,12 @@ public class DoublyLinkedList<T> implements List<T>{
 
         @Override
         public T getNext() {
-            return (T) current.value;
+            return current.value;
         }
 
         @Override
         public T getPrevious() {
-            return (T) current.previous.value;
+            return current.previous.value;
         }
     }
 
