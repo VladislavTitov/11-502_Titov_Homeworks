@@ -6,15 +6,15 @@ import java.util.Scanner;
 
 class HumansReaderWriter {
 
-    ArrayList<DoublyLinkedList> arrayList = new ArrayList<>();
+    ArrayList<DoublyLinkedList> arrayList = new ArrayList<DoublyLinkedList>();
 
-    public void readHuman(){
+    public void readHuman(String path){
 
-        try {
+        try{
 
-            Scanner scanner = new Scanner(new File("C:\\repo\\HumansSort\\src\\main\\resources\\Humans.txt"));
+            Scanner scanner = new Scanner(new File(path));
 
-            if (scanner.hasNextLine()){
+            while (scanner.hasNextLine()){
 
                 String name = scanner.next();
                 int age = scanner.nextInt();
@@ -37,22 +37,27 @@ class HumansReaderWriter {
 
     }
 
-    public void writeHuman(){
+    public void writeHuman(String path){
 
-        try(FileWriter writer = new FileWriter("C:\\repo\\HumansSort\\src\\main\\resources\\SortedHumans.txt")) {
+        try(FileWriter writer = new FileWriter(path)) {
 
             for (int i = 0; i < arrayList.MAX_AGE; i++){
 
                 if (arrayList.get(i) != null){
                     while (arrayList.get(i).iterator.hasNext()){
-                        String name = arrayList.get(i).iterator.getNext().getName();
-                        int age = arrayList.get(i).iterator.getNext().getAge();
+                        Iterator<Human> iterator = arrayList.get(i).iterator;
+                        String name = iterator.getNext().getName();
+                        int age = iterator.getNext().getAge();
 
-                        writer.write(name);
-                        writer.write(age);
+                        System.out.print(name + " ");
+                        System.out.println(age);
 
+                        writer.write(name + " ");
+                        writer.write(age + " ");
+
+                        iterator.next();
                     }
-                }else throw new IllegalArgumentException();
+                }else continue;
 
             }
             writer.flush();
