@@ -48,7 +48,7 @@ public class GraphMatrixImplTest {
             }
         }
 
-        assertEquals(expected, actual);  //test passed 
+        assertEquals(expected, actual);  //test passed
 
     }
 }
