@@ -8,4 +8,15 @@
     <artifactId>lexic-sort</artifactId>
     <version>1.0</version>
 
+    <build>
+
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>ru.itis.inform</groupId>
+            <artifactId>Lists</artifactId>
+            <version>0.2</version>
+        </dependency>
+    </dependencies>
+
 </project>
