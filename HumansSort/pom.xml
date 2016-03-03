@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>ru.itis.inform</groupId>
-            <artifactId>DoublyLinkedList</artifactId>
+            <artifactId>Lists</artifactId>
             <version>0.2</version>
         </dependency>
     </dependencies>

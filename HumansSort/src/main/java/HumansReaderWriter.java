@@ -41,7 +41,7 @@ class HumansReaderWriter {
 
         try(FileWriter writer = new FileWriter(path)) {
 
-            for (int i = 0; i < arrayList.MAX_AGE; i++){
+            for (int i = 0; i < arrayList.MAX_SIZE; i++){
 
                 if (arrayList.get(i) != null){
                     while (arrayList.get(i).iterator.hasNext()){
@@ -54,6 +54,7 @@ class HumansReaderWriter {
 
                         writer.write(name + " ");
                         writer.write(age + " ");
+                        writer.write("\n");
 
                         iterator.next();
                     }
