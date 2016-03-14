@@ -1,4 +1,4 @@
-public interface List<T> {
+public interface List<T extends Comparable> {
 
     void addFirst(T element);
 
@@ -6,7 +6,13 @@ public interface List<T> {
 
     void remove();
 
+    void clear();
+
     void insert(T element);
+
+    void append(DoublyLinkedList<T> list);
+
+
 
     void showList();
 }

@@ -11,4 +11,6 @@ public interface Iterator<E> {
     E getNext();
 
     E getPrevious();
+
+    void back();
 }

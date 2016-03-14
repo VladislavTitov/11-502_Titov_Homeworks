@@ -1,4 +1,4 @@
-public class DoublyLinkedList<T> implements List<T>{
+public class DoublyLinkedList<T extends Comparable> implements List<T>{
 
     Node<T> first;
     Node<T> last;
@@ -29,6 +29,8 @@ public class DoublyLinkedList<T> implements List<T>{
             first = newNode;
         else
             l.next = newNode;
+
+        this.current = this.first;
         count++;
     }
 
@@ -36,6 +38,14 @@ public class DoublyLinkedList<T> implements List<T>{
     public void remove() {
 
     }
+
+    @Override
+    public void clear() {
+        this.first = this.last = null;
+        this.current = first;
+        this.count = 0;
+    }
+
 
     @Override
     public void insert(T element) {
@@ -50,16 +60,80 @@ public class DoublyLinkedList<T> implements List<T>{
     }
 
     @Override
+    public void append(DoublyLinkedList<T> list) {
+        list.last.next = this.first;
+        this.first.previous = list.last;
+        this.first = list.first;
+        this.current = this.first;
+        list.count += this.count;
+    }
+
+    public static <T extends Comparable> DoublyLinkedList merge(DoublyLinkedList<T> a, DoublyLinkedList<T> b){
+        DoublyLinkedList<T> mergeList = new DoublyLinkedList();
+        T aValue = (T) a.iterator.getNext();
+        T bValue = (T) b.iterator.getNext();
+
+        while (a.iterator.hasNext() && b.iterator.hasNext()) {
+            switch (aValue.compareTo(bValue)) {
+                case -1: {
+                    mergeList.addLast(aValue);
+                    a.iterator.next();
+                    if (a.iterator.getNext() != null) {
+                        aValue = (T) a.iterator.getNext();
+                    }
+                }
+                break;
+                case 0: {
+                    mergeList.addLast(aValue);
+                    mergeList.addLast(bValue);
+
+                    a.iterator.next();
+                    b.iterator.next();
+
+                    if (a.iterator.getNext() != null) {
+                        aValue = (T) a.iterator.getNext();
+                    }
+                    if (b.iterator.getNext() != null) {
+                        bValue = (T) b.iterator.getNext();
+                    }
+                }
+                break;
+                case 1: {
+                    mergeList.addLast(bValue);
+                    b.iterator.next();
+                    if (b.iterator.getNext() != null) {
+                        bValue = (T) b.iterator.getNext();
+                    }
+                }
+                break;
+            }
+        }
+
+        while (a.iterator.hasNext()){
+            mergeList.addLast(a.iterator.getNext());
+            a.iterator.next();
+        }
+
+        while (b.iterator.hasNext()){
+            mergeList.addLast(b.iterator.getNext());
+            b.iterator.next();
+        }
+
+
+        return mergeList;
+    }
+
+    @Override
     public void showList() {
-        Node<T> node = first;
-        for (int i = 0; i < count; i++){
-            System.out.println(node.value);
-            node = node.next;
+        this.current = this.first;
+        while (iterator.hasNext()){
+            System.out.println(iterator.getNext());
+            iterator.next();
         }
     }
 
     class Node<E> {
-        E value;
+        private E value;
         Node<E> next;
         Node<E> previous;
 
@@ -68,9 +142,13 @@ public class DoublyLinkedList<T> implements List<T>{
             this.next = next;
             this.previous = previous;
         }
+
+        public E getValue(){
+            return value;
+        }
     }
 
-    class DoublyLinkedListIteratorImpl implements Iterator<T> {
+    class   DoublyLinkedListIteratorImpl implements Iterator<T> {
 
         @Override
         public boolean hasNext() {
@@ -105,6 +183,11 @@ public class DoublyLinkedList<T> implements List<T>{
         public T getPrevious() {
             return current.previous.value;
         }
+
+        public void back(){
+            current = first;
+        }
+
     }
 
 

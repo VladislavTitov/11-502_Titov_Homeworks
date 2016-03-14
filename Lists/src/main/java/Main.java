@@ -1,17 +1,23 @@
 public class Main {
     public static void main(String[] args) {
-        DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
-        dll.addFirst(1);
-        dll.addLast(2);
-        dll.addLast(3);
-        dll.addLast(4);
-        dll.addLast(5);
 
-        dll.iterator.next();
-        dll.iterator.next();
+        DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
+        DoublyLinkedList<Integer> b = new DoublyLinkedList<>();
 
-        dll.insert(6);
+        a.addLast(1);
+        a.addLast(4);
+        a.addLast(7);
+        a.addLast(9);
+        a.addLast(19);
 
-        dll.showList();
+        b.addLast(2);
+        b.addLast(3);
+        b.addLast(6);
+        b.addLast(10);
+
+        DoublyLinkedList<Integer> c = DoublyLinkedList.merge(a, b);
+
+        c.showList();
+
     }
 }
