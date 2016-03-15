@@ -78,9 +78,12 @@ public class DoublyLinkedList<T extends Comparable> implements List<T>{
                 case -1: {
                     mergeList.addLast(aValue);
                     a.iterator.next();
-                    if (a.iterator.getNext() != null) {
+                    if(a.iterator.hasNext()) {
                         aValue = (T) a.iterator.getNext();
+                    }else{
+                        aValue = null;
                     }
+
                 }
                 break;
                 case 0: {
@@ -90,20 +93,29 @@ public class DoublyLinkedList<T extends Comparable> implements List<T>{
                     a.iterator.next();
                     b.iterator.next();
 
-                    if (a.iterator.getNext() != null) {
+
+                    if(a.iterator.hasNext()) {
                         aValue = (T) a.iterator.getNext();
+                    }else{
+                        aValue = null;
                     }
-                    if (b.iterator.getNext() != null) {
+                    if(b.iterator.hasNext()) {
                         bValue = (T) b.iterator.getNext();
+                    }else{
+                        bValue = null;
                     }
+
                 }
                 break;
                 case 1: {
                     mergeList.addLast(bValue);
                     b.iterator.next();
-                    if (b.iterator.getNext() != null) {
+                    if(b.iterator.hasNext()) {
                         bValue = (T) b.iterator.getNext();
+                    }else{
+                        bValue = null;
                     }
+
                 }
                 break;
             }
@@ -121,6 +133,32 @@ public class DoublyLinkedList<T extends Comparable> implements List<T>{
 
 
         return mergeList;
+    }
+
+    public static <T extends Comparable> DoublyLinkedList mergeSort(DoublyLinkedList<T> sortList){
+        DoublyLinkedList<T>[] stack = new DoublyLinkedList[32];
+        for (int i = 0; i < 32; i++){
+            stack[i] = new DoublyLinkedList<>();
+        }
+        int stackPos = 0;
+        while (sortList.iterator.hasNext()){
+            stack[stackPos].addLast(sortList.iterator.getNext());
+            sortList.iterator.next();
+            stackPos++;
+            while (stackPos > 1 && stack[stackPos - 1].count == stack[stackPos - 2].count){
+                stack[stackPos - 2] =  merge(stack[stackPos -1], stack[stackPos -2]);
+                stack[stackPos - 1].clear();
+                stackPos--;
+            }
+        }
+
+        while (stackPos > 1){
+            stack[stackPos - 2] =  merge(stack[stackPos -1], stack[stackPos -2]);
+            stackPos--;
+        }
+        if (stackPos>0){
+            return stack[0];
+        }else return null;
     }
 
     @Override
