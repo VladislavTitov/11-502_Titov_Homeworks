@@ -49,13 +49,7 @@ public class ConvexHull {
             }
         }
         pointList.addLast(p1);
-
-        /*System.out.print(p1.getX()+ " ");
-        System.out.println(p1.getY());
-        System.out.println();*/
-
-        Point p2 = findP2(p1);
-        pointList.addLast(p2);
+        pointList.addLast(findP2(p1));
         alsoJarvis();
 
     }
@@ -126,10 +120,6 @@ public class ConvexHull {
     }
 
     public void writePoints(){
-        /*for (int i = 0; i < count; i++) {
-            System.out.print(arrPoints.get(i).getX() + " ");
-            System.out.println(arrPoints.get(i).getY());
-        }*/
         for (int i = 0; i < pointList.size() - 1; i++){
             System.out.print("(" + pointList.get(i).getX() + ", ");
             System.out.println(pointList.get(i).getY() + ")");
