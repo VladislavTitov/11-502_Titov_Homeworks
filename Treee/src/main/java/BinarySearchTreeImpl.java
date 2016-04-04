@@ -73,7 +73,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
 
     public void isSearchTreePrint(){
         isSearchTree(this.root);
-        System.out.println("\n"+searchTree);
+        System.out.println("\n Is tree searching? "+searchTree);
     }
 
     private boolean isLevelSum(Node root){
@@ -108,10 +108,11 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
             if (prelevelSum > levelSum){
                 return false;
             }
+            System.out.println(true);
         }
         return true;
     }
     public void runIsLevelSum(){
-        System.out.println(isLevelSum(this.root));
+        System.out.println("Is every level bigger? " + isLevelSum(this.root));
     }
 }
