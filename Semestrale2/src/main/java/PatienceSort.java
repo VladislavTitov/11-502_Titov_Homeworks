@@ -5,9 +5,10 @@ import java.util.LinkedList;
 public class PatienceSort {
     private int[] storeNumbers;
     private LinkedList<LinkedList<Integer>> piles = new LinkedList<LinkedList<Integer>>();
+    private int iteration = 0;
 
-    public PatienceSort() throws FileNotFoundException{
-        this.storeNumbers = Reader.readNumbers();
+    public PatienceSort(String filename) throws FileNotFoundException{
+        this.storeNumbers = Reader.readNumbers(filename);
     }
 
     public void formPiles(){
@@ -20,18 +21,29 @@ public class PatienceSort {
             }else{
                 piles.get(k).addFirst(storeNumbers[i]);
             }
+            iteration++;
         }
     }
 
     public void sortWithTree(){
         BinarySearchTreeImpl sortTree = new BinarySearchTreeImpl();
-        /*for (int i = 0; i < piles.size(); i++) {
+        for (int i = 0; i < piles.size(); i++) {
             for (int j = 0; j < piles.get(i).size(); j++) {
                 sortTree.insert(piles.get(i).get(j));
+                iteration++;
+            }
+        }
+
+        /*Iterator<LinkedList<Integer>> iterator = piles.iterator();
+        while(iterator.hasNext()){
+            Iterator<Integer> pilesIterator = iterator.next().iterator();
+            while (pilesIterator.hasNext()){
+                sortTree.insert(pilesIterator.next());
             }
         }*/
 
-        sortTree.inOrderPrint();
+        iteration += sortTree.inOrderPrint();
+        System.out.print(iteration + " ");
     }
 
     private int binarySearch(LinkedList<LinkedList<Integer>> piles, int key){
@@ -44,6 +56,7 @@ public class PatienceSort {
                 l = m;
             }else
                 r = m;
+            iteration++;
         }
         return r;
     }
