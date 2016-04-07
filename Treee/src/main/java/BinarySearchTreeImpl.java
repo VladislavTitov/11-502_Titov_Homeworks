@@ -4,6 +4,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
 
     private  Node root;
     boolean searchTree = true;
+    private int iteration = 0;
 
     private Node insertNode(Node root, int element)
     {
@@ -18,7 +19,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
         } else {
             root.setRight(insertNode(root.getRight(), element));
         }
-
+        iteration++;
         return root;
     }
 
@@ -48,13 +49,15 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
     {
         if (root != null) {
             inOrder(root.getLeft());
-            System.out.print(root.getData() + " ");
+            //System.out.print(root.getData() + " ");
             inOrder(root.getRight());
         }
+        iteration++;
     }
 
-    public void inOrderPrint() {
+    public int inOrderPrint() {
         inOrder(this.root);
+        return iteration;
     }
 
     private void isSearchTree(Node root){
