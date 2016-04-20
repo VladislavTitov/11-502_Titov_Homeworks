@@ -7,7 +7,7 @@ public interface BinarySearchTree {
     void show();
 
     // выводит элементы дерева в прямом порядке
-    int inOrderPrint();
+    void inOrderPrint();
 
     void isSearchTreePrint();
 
