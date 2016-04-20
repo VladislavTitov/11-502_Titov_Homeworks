@@ -26,8 +26,8 @@ public class RandomGenerator {
         }
     }
 
-    public int[] getSizes(){
-        return sizes;
+    public int getSizes(int i){
+        return sizes[i];
     }
     public void show(){
         for (int i=0; i< randomArray.size();i++){

@@ -9,6 +9,7 @@ public class Main {
 
         for (int i = 0; i < generator.getCountOfArrays(); i++) {
 
+            System.out.print(generator.getSizes(i) + "    ");
             String filename = "s"+i;
             PatienceSort sorting = new PatienceSort(filename);
 
@@ -28,7 +29,7 @@ public class Main {
 
             long last = System.currentTimeMillis();
 
-            System.out.println(last - first);
+            System.out.println((last - first));
             //System.out.println();
         }
     }

@@ -8,12 +8,4 @@
     <artifactId>semestrale2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <dependencies>
-        <dependency>
-            <groupId>ru.itis.inform</groupId>
-            <artifactId>Tree</artifactId>
-            <version>1.0-Snapshot</version>
-        </dependency>
-    </dependencies>
-
 </project>
