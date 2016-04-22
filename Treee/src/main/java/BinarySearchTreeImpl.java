@@ -4,10 +4,12 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
 
     private  Node root;
     boolean searchTree = true;
+    private Node inRoot;
 
     public void insert(int element) {
         /*this.root = */
         insertNode(null, this.root, element);
+        insert_case1(inRoot);
 
     }
 
@@ -24,7 +26,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
                     parent.setRight(root);
                 }
             }
-            insert_case1(root);
+            inRoot = root;
         } else if (element <= root.getData()) {
             root.setLeft(insertNode(root, root.getLeft(), element));
         } else {
@@ -32,6 +34,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
         }
         return root;
     }
+
 
     private void insert_case1(Node n){
         if (n.getParent() == null){
@@ -118,6 +121,8 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
             } else {
                 n.getParent().setRight(pivot);
             }
+        }else{
+            this.root = pivot;
         }
 
             n.setRight(pivot.getLeft());
@@ -137,6 +142,8 @@ public class BinarySearchTreeImpl implements BinarySearchTree {
             }else{
                 n.getParent().setRight(pivot);
             }
+        }else{
+            this.root = pivot;
         }
 
         n.setLeft(pivot.getRight());
