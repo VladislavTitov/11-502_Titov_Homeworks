@@ -12,9 +12,13 @@ public class HashMap<E, K> {
         this.threshold = capacity*LOAD_FACTOR;
     }
 
-    public void put(K key, E element){
+    public void add(K key, E element){
+        put(key, element, this.table);
+    }
+
+    private void put(K key, E element, Entry<E, K>[] table){
         if (key == null){
-            putForNullKey(element);
+            putForNullKey(element, table);
             return;
         }
         int hash = hash(key.hashCode());
@@ -26,7 +30,9 @@ public class HashMap<E, K> {
             while (entry != null){
                 if (entry.getHash() == hash && (entry.getKey() == key || key.equals(entry.getKey()))){
                     entry.setData(element);
-                    size++;
+                    if (size >= threshold){
+                        resize();
+                    }
                     return;
                 }
                 entry = entry.getNext();
@@ -34,9 +40,12 @@ public class HashMap<E, K> {
             addEntry(key, element, hash, index);
         }
         size++;
+        if (size >= threshold){
+            resize();
+        }
     }
 
-    private void putForNullKey(E element){
+    private void putForNullKey(E element, Entry<E, K>[] table){
         if (table[0] == null){
             table[0] = new Entry<E, K>(element, null, 0, null);
         }else{
@@ -44,7 +53,9 @@ public class HashMap<E, K> {
             while (entry.getNext() != null){
                 if (entry.getKey() == null){
                     entry.setData(element);
-                    size++;
+                    if (size >= threshold){
+                        resize();
+                    }
                     return;
                 }
                 entry = entry.getNext();
@@ -52,6 +63,9 @@ public class HashMap<E, K> {
             addEntry(null, element, 0, 0);
         }
         size++;
+        if (size >= threshold){
+            resize();
+        }
     }
 
     private void addEntry(K key, E element, int hash, int index){
@@ -119,5 +133,27 @@ public class HashMap<E, K> {
 
     public int getSize() {
         return size;
+    }
+
+    public void resize(){
+        this.capacity *= 2;
+        Entry<E, K>[] newTable = new Entry[this.capacity];
+        this.table = transfer(newTable);
+        threshold *= 2;
+
+    }
+
+    private Entry<E, K>[] transfer(Entry<E, K>[] newTable){
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] != null){
+                Entry itEntry = table[i];
+                while (itEntry != null){
+                    put((K)itEntry.getKey(), (E) itEntry.getData(), newTable);
+                    size--;
+                    itEntry = itEntry.getNext();
+                }
+            }
+        }
+        return newTable;
     }
 }
