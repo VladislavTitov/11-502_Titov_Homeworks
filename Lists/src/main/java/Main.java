@@ -14,6 +14,7 @@ public class Main {
 
         DoublyLinkedList<Integer> c = DoublyLinkedList.mergeSort(a);
 
+        System.out.println(a);
         c.showList();
 
     }

@@ -170,6 +170,16 @@ public class DoublyLinkedList<T extends Comparable> implements List<T>{
         }
     }
 
+    public String toString (){
+        String list = "";
+        this.current = this.first;
+        while (iterator.hasNext()){
+            list += iterator.getNext().toString() + " ";
+            iterator.next();
+        }
+        return list;
+    }
+
     class Node<E> {
         private E value;
         Node<E> next;
