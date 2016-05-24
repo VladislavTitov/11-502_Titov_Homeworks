@@ -1,4 +1,4 @@
-class Human{
+class Human implements Comparable{
 
     private String name;
     private int age;
@@ -14,5 +14,16 @@ class Human{
 
     public int getAge() {
         return age;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Human compHuman = (Human) o;
+        int age2 =  compHuman.getAge();
+        if (age < age2){
+            return -1;
+        }else if (age == age2) {
+            return 0;
+        }else return 1;
     }
 }

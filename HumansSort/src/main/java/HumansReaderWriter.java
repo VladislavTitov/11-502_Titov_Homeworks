@@ -37,6 +37,19 @@ class HumansReaderWriter {
 
     }
 
+    public synchronized DoublyLinkedList<Human> returnHumanList(){
+        DoublyLinkedList<Human> list = new DoublyLinkedList<>();
+        for (int i = 0; i < arrayList.MAX_SIZE; i++) {
+            if (arrayList.get(i) != null){
+                while (arrayList.get(i).iterator.hasNext()){
+                    list.addLast((Human) arrayList.get(i).iterator.getNext());
+                    arrayList.get(i).iterator.next();
+                }
+            }
+        }
+        return list;
+    }
+
     public void writeHuman(String path){
 
         try(FileWriter writer = new FileWriter(path)) {
